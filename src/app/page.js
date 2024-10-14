@@ -1,101 +1,113 @@
-import Image from "next/image";
+'use client';
+import { ReactYTFlexible } from 'react-yt-flexible';
+import { HeartIcon } from '@heroicons/react/24/solid';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const thumbnails = [
+    {
+      videoId: "GDlkCkcIqTs",
+      title: "Introducing iPhone 16",
+      description: "Meet iPhone 16. Built for Apple Intelligence. Turbocharged with the new A18 chip. Featuring all-new Camera Control."
+    },
+    {
+      videoId: "bCqnOn23LWE",
+      title: "Introducing the all-new AirPods 4",
+      description: "Powered by the H2 chip, the new AirPods 4 feature an updated fit for all-day comfort and a totally transformed audio experience."
+    },
+    {
+      videoId: "eYJcUtVIB_g",
+      title: "The Making of Submerged",
+      description: "A behind the scenes look at Submerged, the first scripted film in Apple Immersive Video. Join Academy Award® Winners Edward Berger."
+    }
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+  return (
+    <div className="relative min-h-screen min-w-full">
+      {/* --- MAIN --- */}
+      <main className="bg-white">
+        {/* --- HERO --- */}
+        <section className="flex flex-col justify-center items-center relative w-full py-16 border-b border-slate-200">
+          <img
+            className="h-24 w-auto"
+            src="/logo.png"
+            alt="logo"
+          />
+          <h1 className="text-slate-900 font-extrabold text-4xl md:text-5xl tracking-tight text-center mt-8">
+            React YouTube Flexible
+          </h1>
+          <p className="mt-6 text-lg text-slate-600 text-center max-w-4xl mx-auto">
+            A flexible React component for embedding YouTube videos or thumbnails with customizable aspect ratios and advanced features. It simplifies the integration of YouTube content into your application with custom styles and classes, all in a lightweight and easy-to-use manner.
+          </p>
+        </section>
+        {/* --- HERO --- */}
+        {/* --- VIDEOS --- */}
+        <section className="relative py-16 bg-slate-100 border-b border-slate-200">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight text-center">
+              YouTube Videos
+            </h2>
+            <div className="mx-auto max-w-5xl px-6 lg:px-8 text-center">
+              <p className="mt-6 text-lg text-slate-500">
+                {`You can easily integrate YouTube videos into your application by simply passing the video ID to our component. The video automatically adjusts to your design, and you can further customize it if needed. Without complications, you get an embedded video that adapts to your component.`}
+              </p>
+            </div>
+            <div className="mt-12 mx-auto max-w-5xl p-4 rounded-3xl bg-white border border-slate-300 shadow-2xl">
+              <ReactYTFlexible
+                videoId="e6T34u51MaA"
+                borderRadius="0.5rem" />
+            </div>
+          </div>
+        </section>
+        {/* --- VIDEOS --- */}
+        {/* --- THUMBNAIL --- */}
+        <section className="relative py-16 border-b border-slate-200">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight text-center">
+              YouTube Thumbnail
+            </h2>
+            <div className="mx-auto max-w-5xl px-6 lg:px-8 text-center">
+              <p className="mt-6 text-lg text-slate-500">
+                {`You can use the component to display only the video thumbnail and redirect the user to the full video. Additionally, you can apply custom styles and Tailwind CSS classes to adjust the appearance. The classes not only allow you to style the component but also add interactive effects.`}
+              </p>
+            </div>
+            <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3 ">
+              {thumbnails.map((item, index) => (
+                <div key={index} className="group p-4 rounded-3xl bg-white border border-slate-200 shadow-2xl">
+                  <div className="relative overflow-hidden rounded-xl">
+                    <ReactYTFlexible
+                      videoId={item.videoId}
+                      className={"transition duration-500 group-hover:scale-105"}
+                      mode="thumbnail" />
+                  </div>
+                  <div className="mt-4 relative">
+                    <h5 className="text-xl font-bold text-slate-900">
+                      {item.title}
+                    </h5>
+                    <p className="mt-4 text-slate-500">
+                      {item.description}
+                    </p>
+                    <button className="group mt-4 inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-slate-900 text-white hover:bg-slate-800 focus:ring-slate-950"
+                      onClick={() => { window.open(`https://www.youtube.com/watch?v=${item.videoId}`, '_blank'); }}>
+                      Watch Video
+                      <svg className="overflow-visible ml-3 text-slate-400 group-hover:text-white" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M0 0L3 3L0 6"></path></svg>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        {/* --- THUMBNAIL --- */}
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      {/* --- MAIN --- */}
+      {/* --- FOOTER --- */}
+      <footer className="bg-slate-100">
+        <div className="mx-auto max-w-7xl p-6">
+          <p className="text-xs text-slate-500">Made with <HeartIcon className="h-4 w-4 inline-block text-red-500" /> by Luis Reynaldo</p>
+          <p className="text-xs text-slate-500">&copy; {` ${new Date().getFullYear()}`}. All rights reserved</p>
+        </div>
       </footer>
+      {/* --- FOOTER --- */}
     </div>
   );
 }
